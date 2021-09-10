@@ -22,9 +22,6 @@ function setup() {
   ground = new Ground();
   stand1 = new Stand(390,300,250,10);
   stand2 = new Stand(700,200,200,10);
-  ball = Bodies.circle(100, 200, 70)
-  World.add(world, ball)
-  slingShot = new SlingShot(this.ball, {x: 100, y: 220})
  
   //nivel uno
   block1 = new Block(300,275,30,40);
@@ -60,7 +57,12 @@ function setup() {
   block28 = new Block(680, 100, 30, 40);
   block29 = new Block(710, 100, 30, 40);
   block30 = new Block(695,  60, 30, 40);
+
+  ball = Bodies.circle(100, 100, 70)
+  World.add(world, ball)
+  slingShot = new SlingShot(this.ball, {x: 100, y: 220})
 }
+
 function draw() {
   background(56,44,44); 
  
@@ -109,6 +111,7 @@ function draw() {
   fill("Red")
   block30.display();
   fill("gold")
+
   imageMode(CENTER);
   image(polygon_img, ball.position.x, ball.position.y, 40, 40);
   slingShot.display();
@@ -120,4 +123,10 @@ function mouseDragged() {
 
 function mouseReleased() {
   slingShot.fly();
+}
+
+function keyPressed() {
+  if(keyCode === 32) {
+    slingShot.attach(this.ball)
+  }
 }
